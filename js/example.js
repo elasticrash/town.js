@@ -419,7 +419,7 @@ info.style.position = 'absolute';
 info.style.top = '10px';
 info.style.width = '100%';
 info.style.textAlign = 'center';
-info.innerHTML = 'Shapes Extrusion via Geo Data<br/>Drag to spin';
+info.innerHTML = 'Town.js<br/>Drag to spin';
 container.appendChild( info );
 
 init3d();
