@@ -1,0 +1,38 @@
+[
+  {
+    "floors": [
+      {
+        "height": 2.1,
+        "footprint": [[0, 0], [20, 0], [20, 20], [0,20]]
+      },
+      {
+        "height": 3.1,
+        "footprint": [[0, 0], [20, 0], [20, 20], [0,20]]
+      },
+      {
+        "height": 2,
+        "footprint": [[10, 10], [20, 10], [20, 20], [10,20]]
+      }
+    ],
+    "roof": false,
+    "address": "242 ARE",
+    "postcode": "LEK EKD"
+  },
+  {
+    "floors": [
+      {
+        "height": 8.1,
+        "footprint": [[20, 0], [40, 0], [40, 20], [20,20]]
+      },
+      {
+        "height": 3.1,
+        "footprint": [[30, 0], [40, 0], [40, 10], [30,10]]
+      }
+    ],
+    "roof": true,
+    "rooftop": [[30, 5], [40, 5]],
+    "roofheight": 2,
+    "address": "244 ARE",
+    "postcode": "LEK EKD"
+  }
+]
