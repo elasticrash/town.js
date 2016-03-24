@@ -271,10 +271,7 @@ var addGeoObject = function( group, svgObject ) {
                 bevelEnabled: false
             });
             mesh = THREE.SceneUtils.createMultiMaterialObject(shape3d, materials);
-            mesh.rotation.x = Math.PI;
             mesh.translateZ( 0 + theOffsets[i]);
-            mesh.translateX( - theCenter.x);
-            mesh.translateY( - theCenter.y);
             group.add(mesh);
         }
     }

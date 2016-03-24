@@ -13,7 +13,7 @@ function ReadData(addGeoObject, group) {
             obj.offsets = [];
             data.forEach(function (building) {
                 var CurrentFloor = 0;
-                building.floors.forEach(function (floor) {
+                building.floors.forEach(function(floor) {
                     obj.paths.push("M" + floor.footprint.join(" L") + " Z");
                     obj.amounts.push(floor.height);
                     obj.offsets.push(CurrentFloor);
@@ -22,16 +22,24 @@ function ReadData(addGeoObject, group) {
                 });
                 if (building.roof) {
                     //TODO check if there are always 2 points
-                    var mesh = createRoof(building.rooftop, building.floors[building.floors.length - 1], CurrentFloor, building.roofheight);
-                    group.add(mesh);
+                    createRoof(building.rooftop, building.floors[building.floors.length - 1], CurrentFloor, building.roofheight, group);
                 }
+                createDoors(building.doors, group);
             });
-            obj.center = {x: 20, y: 20};
+            //obj.center = {x: 20, y: 20};
             addGeoObject(group, obj);
         });
 }
 
-function createRoof(rooftop, topfloor, maxheight, roofheight) {
+function createDoors(doors, group) {
+
+    doors.forEach(function (door) {
+        var geometry = new THREE.CylinderGeometry(2, 2, door.height, 10);
+        createMesh(geometry, group, door.position[0], geometry.parameters.height / 2, -door.position[1], Math.PI / 2);
+    });
+}
+
+function createRoof(rooftop, topfloor, maxheight, roofheight, group) {
     "use strict";
     var buildingHeight = maxheight + roofheight;
     var NearestA = [];
@@ -83,7 +91,7 @@ function createRoof(rooftop, topfloor, maxheight, roofheight) {
         geometry.faces.push(new THREE.Face3(currentFaceIndex, currentFaceIndex + 1, currentFaceIndex + 2, color));
     });
 
-    return createMesh(geometry);
+    return createMesh(geometry, group);
 }
 
 function createRoofSlope(geometry, rooftop, buildingHeight, topfloor, MaxMinA, MaxMinB, NextMaxB, maxheight) {
@@ -100,8 +108,20 @@ function createRoofSlope(geometry, rooftop, buildingHeight, topfloor, MaxMinA, M
     return geometry;
 }
 
-function createMesh(geometry) {
+function createMesh(geometry, group, translateX, translateY, translateZ, rotate) {
     "use strict";
+    if(translateX === undefined){
+        translateX = 0;
+    }
+    if(translateY === undefined){
+        translateY = 0;
+    }
+    if(translateZ === undefined){
+        translateZ = 0;
+    }
+    if(rotate === undefined){
+        rotate = 0;
+    }
     var color = new THREE.Color(Math.random() * 0xffffff);
     var materials = [
         new THREE.MeshPhongMaterial({
@@ -116,10 +136,11 @@ function createMesh(geometry) {
 
     var mesh = THREE.SceneUtils.createMultiMaterialObject(geometry, materials);
     //TODO got to get rid of translations, not really needed they are just stuck from the examples
-    mesh.rotation.x = Math.PI;
-    mesh.translateX(-20);
-    mesh.translateY(-20);
-    return mesh;
+    mesh.rotation.x = rotate;
+    mesh.translateX(translateX);
+    mesh.translateY(translateY);
+    mesh.translateZ(translateZ);
+    group.add(mesh);
 }
 
 function distance(PointA, PointB) {

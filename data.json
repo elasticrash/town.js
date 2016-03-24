@@ -2,11 +2,11 @@
   {
     "floors": [
       {
-        "height": 2.1,
+        "height": 4.1,
         "footprint": [[0, 0], [20, 0], [20, 20], [0,20]]
       },
       {
-        "height": 3.1,
+        "height": 4.1,
         "footprint": [[0, 0], [20, 0], [20, 20], [0,20]]
       },
       {
@@ -15,24 +15,46 @@
       }
     ],
     "roof": false,
-    "address": "242 ARE",
-    "postcode": "LEK EKD"
+    "rooftop" : null,
+    "roofheight" : null,
+    "doors" : [{
+      "type" : "front",
+      "position": [10, 0],
+      "height" : 2
+    }],
+    "address": {
+      "number" : "242",
+      "name" : "Wilford Road",
+      "city" : "Derby",
+      "postcode" : "DE2 4GB"
+    }
   },
   {
     "floors": [
       {
-        "height": 8.1,
+        "height": 4.1,
         "footprint": [[20, 0], [40, 0], [40, 20], [20,20]]
       },
       {
-        "height": 3.1,
+        "height": 6.1,
         "footprint": [[30, 0], [40, 0], [40, 10], [30,10]]
       }
     ],
     "roof": true,
     "rooftop": [[30, 5], [40, 5]],
     "roofheight": 2,
-    "address": "244 ARE",
-    "postcode": "LEK EKD"
+    "doors" : [
+      {
+        "type": "front",
+        "position": [30,0],
+        "height": 2
+      }
+    ],
+    "address": {
+      "number": "244",
+      "name": "Wilford Road",
+      "city": "Derby",
+      "postcode": "DE2 4GB"
+    }
   }
 ]
